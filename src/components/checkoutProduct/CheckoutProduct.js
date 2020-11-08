@@ -1,10 +1,19 @@
 import React from 'react'
 import './CheckoutProduct.css'
 
+import { useStateValue } from "../../StateProvider";
+
 function CheckoutProduct({ id, title, image, price, rating }) {
 
+  const [{ basket }, dispatch] = useStateValue();
+  console.log('This  is the basket >>>>>', basket)
   const removeFromBasket = () => {
-  }
+    // dispatch the item into the data layer
+    dispatch({
+      type: "REMOVE_FROM_BASKET",
+      id: id,
+    });
+  };
 
   return (
     <div className="checkoutProduct"> 
